@@ -1,0 +1,57 @@
+﻿@model MvcApplication5.Models.Document
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Document</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idDocument)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idDocument)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nameDoc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nameDoc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Employee.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Employee.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mark)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mark)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Employee1.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Employee1.name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

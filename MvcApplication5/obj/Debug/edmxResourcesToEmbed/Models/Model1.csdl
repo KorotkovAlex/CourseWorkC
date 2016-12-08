@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="flowofdocumentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="idDocument" />
+    </Key>
+    <Property Name="idDocument" Type="Int32" Nullable="false" />
+    <Property Name="nameDoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="author" Type="Int32" Nullable="false" />
+    <Property Name="mark" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="signer" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Document__author__36B12243" FromRole="Document" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Document__signer__37A5467C" FromRole="Document" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="idEmployee" />
+    </Key>
+    <Property Name="idEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="idRole" Type="Int32" />
+    <NavigationProperty Name="Document" Relationship="Self.FK__Document__author__36B12243" FromRole="Employee" ToRole="Document" />
+    <NavigationProperty Name="Document1" Relationship="Self.FK__Document__signer__37A5467C" FromRole="Employee" ToRole="Document" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__Employee__idRole__239E4DCF" FromRole="Employee" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__idRole__239E4DCF" FromRole="Role" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK__Document__author__36B12243">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idEmployee" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Document__signer__37A5467C">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idEmployee" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="signer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__idRole__239E4DCF">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="flowofdocumentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Document" EntityType="Self.Document" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <AssociationSet Name="FK__Document__author__36B12243" Association="Self.FK__Document__author__36B12243">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Document__signer__37A5467C" Association="Self.FK__Document__signer__37A5467C">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__idRole__239E4DCF" Association="Self.FK__Employee__idRole__239E4DCF">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

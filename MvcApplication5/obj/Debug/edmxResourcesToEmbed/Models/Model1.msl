@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище flowofdocumentModelContainer" CdmEntityContainer="flowofdocumentEntities">
+    <EntitySetMapping Name="Document">
+      <EntityTypeMapping TypeName="flowofdocumentModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="idDocument" ColumnName="idDocument" />
+          <ScalarProperty Name="nameDoc" ColumnName="nameDoc" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+          <ScalarProperty Name="signer" ColumnName="signer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="flowofdocumentModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="flowofdocumentModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

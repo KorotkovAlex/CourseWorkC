@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab172ecbdb564654abba06674e7421c9" Name="Diagram1">
+        <EntityTypeShape EntityType="flowofdocumentModel.Document" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="flowofdocumentModel.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="flowofdocumentModel.Role" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="flowofdocumentModel.FK__Document__author__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="flowofdocumentModel.FK__Document__signer__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="flowofdocumentModel.FK__Employee__idRole__239E4DCF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

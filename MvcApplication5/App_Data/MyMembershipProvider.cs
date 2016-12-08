@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MvcApplication5.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 public class MyMembershipProvider : MembershipProvider
 {
@@ -145,9 +147,9 @@ public class MyMembershipProvider : MembershipProvider
 
     public override bool ValidateUser(string username, string password)
     {
-        using (Test db = new Test())
+        using (flowofdocumentEntities db = new flowofdocumentEntities())
         {
-            var result = from u in db.UserProfile where (u.UserName == username) select u;
+            var result = from u in db.Employee where (u.login == username) select u;
 
             if (result.Count() != 0)
             {

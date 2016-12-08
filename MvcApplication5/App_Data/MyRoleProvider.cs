@@ -1,25 +1,27 @@
-﻿using System;
+﻿using MvcApplication5.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 public class MyRoleProvider : RoleProvider
 {
     public static bool Role(string username, string[] roleName)
     {
         bool outputResult = false;
-        using (Test _db = new Test())
+        using (flowofdocumentEntities _db = new flowofdocumentEntities())
         {
             foreach (var rn in roleName)
             {
-                var user = (from u in _db.UserProfile
-                            where u.UserName == username
+                var user = (from u in _db.Employee
+                            where u.login == username
                             select u).FirstOrDefault();
                 if (user != null)
                 {
                     var role = user.Role;
 
-                    if (role.Equals(rn))
+                    if (role.name.Equals(rn))
                     {
                         outputResult = true;
                     }
@@ -69,22 +71,24 @@ public class MyRoleProvider : RoleProvider
     public override string[] GetRolesForUser(string username)
     {
         string[] role = new string[] { };
-        using (Test _db = new Test())
+        using (flowofdocumentEntities _db = new flowofdocumentEntities())
         {
             try
             {
                 // Получаем пользователя
-                var user = (from u in _db.UserProfile
-                            where u.UserName == username
+                var user = (from u in _db.Employee
+                            where u.login == username
                             select u).FirstOrDefault();
                 if (user != null)
                 {
                     // получаем роль
-                    var userRole = user.Role;
+                    var userRole = (from u in _db.Role
+                                    where u.IdRole == user.idRole
+                                    select u).FirstOrDefault();
 
                     if (userRole != null)
                     {
-                        role = new string[] { userRole };
+                        role = new string[] { userRole.name };
                     }
                 }
             }

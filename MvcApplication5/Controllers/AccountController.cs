@@ -37,7 +37,14 @@ namespace MvcApplication5.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        if(MyRoleProvider.Role(model.UserName, new string[] {"Admin"}))
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        if (MyRoleProvider.Role(model.UserName, new string[] { "signer","author" }))
+                        {
+                            return RedirectToAction("Index", "Worker");
+                        }
                     }
                 }
             }
@@ -52,7 +59,7 @@ namespace MvcApplication5.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         [Authorize]

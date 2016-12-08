@@ -275,6 +275,7 @@
     <Content Include="Views\Worker\Edit.cshtml" />
     <Content Include="Views\Worker\Delete.cshtml" />
     <Content Include="Views\Shared\_LoginPartical.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

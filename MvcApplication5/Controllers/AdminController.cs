@@ -9,6 +9,7 @@ using MvcApplication5.Models;
 
 namespace MvcApplication5.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private flowofdocumentEntities db = new flowofdocumentEntities();

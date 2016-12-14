@@ -4,14 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="Style.css" rel="stylesheet">
+          @Styles.Render("~/Content/Style.css")
+          @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <header>
-        <section id="login">
-            @Html.Partial("_LoginPartical")
-        </section>
+        <div class="Header">
+            <div class="SubHeader">
+                <section id="login">
+                    @Html.Partial("_LoginPartical")
+                </section>
+            </div>
+        </div>        
     </header>
     @RenderBody()
     @Scripts.Render("~/bundles/jquery")

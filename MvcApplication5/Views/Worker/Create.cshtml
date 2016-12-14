@@ -4,7 +4,20 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="Menu">
+    @if (MyRoleProvider.Role(User.Identity.Name, new string[] { "signer" }))
+    {
+        @Html.ActionLink(" Список документов ", "Index")
+        @Html.ActionLink(" Подписать ", "Marking", "Worker")
+    }
+    @if (MyRoleProvider.Role(User.Identity.Name, new string[] { "author" }))
+    {
+        @Html.ActionLink(" Список документов ", "Index")
+        @Html.ActionLink(" Добавить документ ", "Create")
+        @Html.ActionLink(" Испраить документ ", "Marking", "Worker")
+    }
+</div>
+
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -24,6 +37,11 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.nameDoc)
         </div>
+        @using (Html.BeginForm("Index", "Worker", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file" />
+            <input type="submit" value="OK" />
+        }
         <div class="editor-field">
             @Html.EditorFor(model => model.nameDoc)
             @Html.ValidationMessageFor(model => model.nameDoc)

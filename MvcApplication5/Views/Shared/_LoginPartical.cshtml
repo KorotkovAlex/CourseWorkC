@@ -1,19 +1,15 @@
 ﻿@if (Request.IsAuthenticated)
 {
     <text>
-        <div class="pop">
             Здравствуйте, @Html.ActionLink(User.Identity.Name, "Details", "Account")!
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
             {
                 @Html.AntiForgeryToken()
                 <a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>
             }
-        </div>
     </text>
 }
 else
 {
-    <div class="pop">
-        @Html.ActionLink("Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-    </div>
+    @Html.ActionLink("Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
 }

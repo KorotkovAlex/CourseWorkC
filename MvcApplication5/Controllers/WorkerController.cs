@@ -6,16 +6,40 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication5.Models;
+using System.IO;
 
 namespace MvcApplication5.Controllers
 {
+    [Authorize(Roles = "signer,author")]
     public class WorkerController : Controller
     {
         private flowofdocumentEntities db = new flowofdocumentEntities();
 
         //
         // GET: /Worker/
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase file)
+        {
+            // Verify that the user selected a file
+            if (file != null && file.ContentLength > 0)
+            {
+                // extract only the fielname
+                var fileName = Path.GetFileName(file.FileName);
+                // store the file inside ~/App_Data/uploads folder
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                file.SaveAs(path);
+                
+            }
+            // redirect back to the index action to show the form once again
+            return RedirectToAction("Index");
+        }
 
+        [HttpPost]
+        public FileResult Download(string name)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Саня\Documents\Visual Studio 2013\Projects\MvcApplication5\MvcApplication5\App_Data\uploads\" + name);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
+        }
         public ActionResult Index()
         {
             var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
@@ -127,6 +151,18 @@ namespace MvcApplication5.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+        [Authorize(Roles = "signer")]
+        public ActionResult Marking()
+        {
+            var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
+            return View(document.ToList());
+        }
+        [Authorize(Roles = "author")]
+        public ActionResult MarkingA()
+        {
+            var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
+            return View(document.ToList());
         }
     }
 }

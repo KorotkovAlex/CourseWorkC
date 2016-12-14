@@ -74,6 +74,17 @@ namespace MvcApplication5
                 defaults: new { controller = "Worker", action = "Edit", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Marking",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Worker", action = "Marking", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "MarkingA",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Worker", action = "MarkingA", id = UrlParameter.Optional }
+            );
            
         }
 

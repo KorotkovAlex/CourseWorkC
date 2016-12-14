@@ -1,0 +1,12 @@
+﻿body {
+    margin: 0px;
+}
+.Header {
+    width:100%;
+    background:#0094ff;
+}
+
+.SubHeader {
+    width:900px;
+    margin: 0px auto;
+}

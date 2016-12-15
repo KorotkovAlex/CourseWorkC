@@ -279,6 +279,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Worker\Marking.cshtml" />
     <Content Include="Views\Worker\MarkingA.cshtml" />
+    <Content Include="Views\Shared\PatternMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

@@ -1,0 +1,16 @@
+﻿<div id="mainmenu">
+    <ul>
+        @if (MyRoleProvider.Role(User.Identity.Name, new string[] { "signer" }))
+        {
+            <li><a href="#"> @Html.ActionLink("Список", "Index") </a></li>
+            <li><a href="#"> @Html.ActionLink("Подписать", "Marking", "Worker") </a></li>
+        }
+        @if (MyRoleProvider.Role(User.Identity.Name, new string[] { "author" }))
+        {
+            <li><a href="#"> @Html.ActionLink("Список", "Index")</a></li>
+            <li><a href="#"> @Html.ActionLink("Добавить", "Create") </a></li>
+            <li><a href="#"> @Html.ActionLink("Исправить ", "MarkingA", "Worker") </a></li>
+        }
+
+    </ul>
+</div>

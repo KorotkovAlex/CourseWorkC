@@ -1,12 +1,96 @@
 ﻿body {
     margin: 0px;
+    font-family:Roboto;
+    background:#eee;
 }
 .Header {
     width:100%;
-    background:#0094ff;
+    background:#4285f4;
 }
 
 .SubHeader {
     width:900px;
     margin: 0px auto;
+}
+
+.Hello {
+   text-align:right;
+   color:#ffffff;
+}
+
+.Hello a {
+    color:#ffffff;
+}
+
+a {
+    text-decoration: none;
+    colo
+}
+
+.Menu {
+    width: 100%;
+    height:50px;
+        position: relative;
+}
+
+.MenuCenter {
+    width: 900px;
+    height: 50 px;
+    margin: 0px auto;
+    text-align:center;
+    position: relative;
+}
+
+.SubMenu {
+    width:200px;
+    left:50%;
+    margin: 0px auto;
+    float:left;
+        position: relative;
+}
+
+.TableCl {
+    width:100%;
+}
+.SubTebleCl {
+    width:550px;
+    margin: 0px auto;
+}
+
+*, *::after, *::before {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-o-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+#mainmenu {
+position: relative;
+overflow:hidden;
+height:40px;
+}
+#mainmenu ul {
+list-style:none;
+margin:0;
+padding:0;
+position: relative;
+left:50%;
+float:left;
+height:40px
+}
+#mainmenu ul li {
+position:relative;
+left:-50%;
+float:left;
+margin:0 10px;
+height:40px
+}
+#mainmenu ul li a {
+color:#555555;
+display:block;
+text-decoration:none;
+padding:0 15px;
+line-height: 40px;
 }

@@ -4,19 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<div class="Menu">
-    @if (MyRoleProvider.Role(User.Identity.Name, new string[] { "signer" }))
-    {
-        @Html.ActionLink(" Список документов ", "Index")
-        @Html.ActionLink(" Подписать ", "Marking", "Worker")
-    }
-    @if (MyRoleProvider.Role(User.Identity.Name, new string[] { "author" }))
-    {
-        @Html.ActionLink(" Список документов ", "Index")
-        @Html.ActionLink(" Добавить документ ", "Create")
-        @Html.ActionLink(" Испраить документ ", "Marking", "Worker")
-    }
-</div>
 
 
 @using (Html.BeginForm()) {

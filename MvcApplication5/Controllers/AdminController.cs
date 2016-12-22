@@ -9,24 +9,27 @@ using MvcApplication5.Models;
 
 namespace MvcApplication5.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private flowofdocumentEntities db = new flowofdocumentEntities();
+        private flowofdocumentEntities1 db = new flowofdocumentEntities1();
 
         //
         // GET: /Admin/
 
-        public ActionResult Index()
+        public ViewResult Index(string search)
         {
             var employee = db.Employee.Include(e => e.Role);
+            if (!String.IsNullOrEmpty(search))
+            {
+                employee = employee.Where(s => s.login.Contains(search));
+            }
             return View(employee.ToList());
         }
 
         //
         // GET: /Admin/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(string id = null)
         {
             Employee employee = db.Employee.Find(id);
             if (employee == null)
@@ -66,7 +69,7 @@ namespace MvcApplication5.Controllers
         //
         // GET: /Admin/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(string id = null)
         {
             Employee employee = db.Employee.Find(id);
             if (employee == null)
@@ -97,7 +100,7 @@ namespace MvcApplication5.Controllers
         //
         // GET: /Admin/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(string id = null)
         {
             Employee employee = db.Employee.Find(id);
             if (employee == null)
@@ -112,7 +115,7 @@ namespace MvcApplication5.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Employee employee = db.Employee.Find(id);
             db.Employee.Remove(employee);

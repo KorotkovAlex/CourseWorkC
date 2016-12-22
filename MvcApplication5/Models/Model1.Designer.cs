@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "c:\users\саня\documents\visual studio 2013\Projects\MvcApplication5\MvcApplication5\Models\Model1.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\Саня\documents\visual studio 2013\Projects\MvcApplication5\MvcApplication5\Models\Model1.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

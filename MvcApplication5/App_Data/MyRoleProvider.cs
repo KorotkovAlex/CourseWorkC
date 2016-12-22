@@ -10,7 +10,7 @@ public class MyRoleProvider : RoleProvider
     public static bool Role(string username, string[] roleName)
     {
         bool outputResult = false;
-        using (flowofdocumentEntities _db = new flowofdocumentEntities())
+        using (flowofdocumentEntities1 _db = new flowofdocumentEntities1())
         {
             foreach (var rn in roleName)
             {
@@ -71,7 +71,7 @@ public class MyRoleProvider : RoleProvider
     public override string[] GetRolesForUser(string username)
     {
         string[] role = new string[] { };
-        using (flowofdocumentEntities _db = new flowofdocumentEntities())
+        using (flowofdocumentEntities1 _db = new flowofdocumentEntities1())
         {
             try
             {

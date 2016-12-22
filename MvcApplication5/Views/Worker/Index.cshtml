@@ -4,60 +4,68 @@
     ViewBag.Title = "Index";
 }
 
-<div class="TableCl">
-    <div class="SubTebleCl">
-        <table>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.idDocument)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.nameDoc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Employee.name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.mark)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Employee1.name)
-                </th>
-                <th></th>
-            </tr>
+<h2>Index</h2>
+<form action="/Worker/Index" method="get">
+    <p>
+        <input name="search" type="text" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table>
+    <tr>
+        <th>
+            Id Документа
+        </th>
+        <th>
+            Название документа
+        </th>
+        <th>
+            Дата создания
+        </th>
+        <th>
+            Имя автора
+        </th>
+        <th>
+            Подпись
+        </th>
+        <th>
+            Имя подписанта
+        </th>
+        <th>
+            Комментарий 
+        </th>
+        <th></th>
+    </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.idDocument)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nameDoc)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Employee.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.mark)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Employee1.name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.idDocument }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.idDocument }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.idDocument })
-                    </td>
-                </tr>
-            }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idDocument)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameDoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idDocument }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idDocument }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDocument })
+        </td>
+    </tr>
+}
 
-        </table>
-    </div>
-</div>
+</table>

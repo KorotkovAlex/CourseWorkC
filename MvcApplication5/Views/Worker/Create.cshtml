@@ -4,9 +4,64 @@
     ViewBag.Title = "Create";
 }
 
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Worker", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @*<div class="editor-label">
+        @Html.LabelFor(model => model.idDocument)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.idDocument)
+        @Html.ValidationMessageFor(model => model.idDocument)
+    </div>*@
 
+    <div class="editor-label">
+        @Html.LabelFor(model => model.nameDoc)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.date)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.date)
+        @Html.ValidationMessageFor(model => model.date)
+    </div>
 
-@using (Html.BeginForm()) {
+    <div class="editor-label">
+        @Html.LabelFor(model => model.author, "Employee")
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("author", String.Empty)
+        @Html.ValidationMessageFor(model => model.author)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.mark)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.mark)
+        @Html.ValidationMessageFor(model => model.mark)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.signer, "Employee1")
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("signer", String.Empty)
+        @Html.ValidationMessageFor(model => model.signer)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.comment)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.comment)
+        @Html.ValidationMessageFor(model => model.comment)
+    </div>
+    <input type="file" name="file" />
+    <input type="submit" value="OK" />
+}
+@*@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -24,12 +79,8 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.nameDoc)
         </div>
-        @using (Html.BeginForm("Index", "Worker", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <input type="file" name="file" />
-            <input type="submit" value="OK" />
-        }
         <div class="editor-field">
+            <input type="file" name="file" />
             @Html.EditorFor(model => model.nameDoc)
             @Html.ValidationMessageFor(model => model.nameDoc)
         </div>
@@ -66,13 +117,23 @@
             @Html.ValidationMessageFor(model => model.signer)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.comment)
+            @Html.ValidationMessageFor(model => model.comment)
+        </div>
+
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
-}
+}*@
+
 
 <div>
+    <br>
     @Html.ActionLink("Back to List", "Index")
 </div>
 

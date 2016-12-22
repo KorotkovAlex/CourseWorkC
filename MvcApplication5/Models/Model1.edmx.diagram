@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ab172ecbdb564654abba06674e7421c9" Name="Diagram1">
+      <Diagram DiagramId="defec9b5c70f4fb28db3881fd6df5cb1" Name="Diagram1">
         <EntityTypeShape EntityType="flowofdocumentModel.Document" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="flowofdocumentModel.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="flowofdocumentModel.Role" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="flowofdocumentModel.FK__Document__author__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="flowofdocumentModel.FK__Document__signer__37A5467C" ManuallyRouted="false" />
-        <AssociationConnector Association="flowofdocumentModel.FK__Employee__idRole__239E4DCF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="flowofdocumentModel.Employee" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="flowofdocumentModel.Role" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="flowofdocumentModel.FK__Document__author__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="flowofdocumentModel.FK__Document__signer__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="flowofdocumentModel.FK__Employee__idRole__00200768" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

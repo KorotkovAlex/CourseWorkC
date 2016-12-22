@@ -133,6 +133,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\WorkerController.cs" />
+    <Compile Include="flowofdocumentEntities1__MvcApplication5\Models_.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,21 +266,21 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Details.cshtml" />
-    <Content Include="Views\Admin\Create.cshtml" />
-    <Content Include="Views\Admin\Edit.cshtml" />
-    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Shared\_LoginPartical.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\PatternMenu.cshtml" />
     <Content Include="Views\Worker\Index.cshtml" />
     <Content Include="Views\Worker\Details.cshtml" />
     <Content Include="Views\Worker\Create.cshtml" />
     <Content Include="Views\Worker\Edit.cshtml" />
     <Content Include="Views\Worker\Delete.cshtml" />
-    <Content Include="Views\Shared\_LoginPartical.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Worker\Marking.cshtml" />
     <Content Include="Views\Worker\MarkingA.cshtml" />
-    <Content Include="Views\Shared\PatternMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

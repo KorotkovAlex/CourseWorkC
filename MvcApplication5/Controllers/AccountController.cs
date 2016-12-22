@@ -13,7 +13,7 @@ namespace MvcApplication5.Controllers
     public class AccountController : Controller
     {
 
-        flowofdocumentEntities db = new flowofdocumentEntities();
+        flowofdocumentEntities1 db = new flowofdocumentEntities1();
 
         //
         // GET: /Account/

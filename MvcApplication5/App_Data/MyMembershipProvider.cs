@@ -147,19 +147,14 @@ public class MyMembershipProvider : MembershipProvider
 
     public override bool ValidateUser(string username, string password)
     {
-        using (flowofdocumentEntities db = new flowofdocumentEntities())
+        using (flowofdocumentEntities1 db = new flowofdocumentEntities1())
         {
-            var result = from u in db.Employee where (u.login == username) select u;
-
-            if (result.Count() != 0)
+            var result = (from u in db.Employee where (u.login == username && u.password == password) select u).FirstOrDefault();
+            if (result != null)
             {
-                var dbuser = result.First();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

@@ -9,21 +9,21 @@
           <Key>
             <PropertyRef Name="idDocument" />
           </Key>
-          <Property Name="idDocument" Type="int" Nullable="false" />
-          <Property Name="nameDoc" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="date" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="author" Type="int" Nullable="false" />
-          <Property Name="mark" Type="nchar" MaxLength="10" />
-          <Property Name="signer" Type="int" />
+          <Property Name="idDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameDoc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="900" Nullable="false" />
+          <Property Name="mark" Type="bit" />
+          <Property Name="signer" Type="nvarchar" MaxLength="900" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="idEmployee" />
+            <PropertyRef Name="login" />
           </Key>
-          <Property Name="idEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="10" />
-          <Property Name="login" Type="nchar" MaxLength="10" />
-          <Property Name="password" Type="nchar" MaxLength="10" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="login" Type="nvarchar" MaxLength="900" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" />
           <Property Name="idRole" Type="int" />
         </EntityType>
         <EntityType Name="Role">
@@ -31,33 +31,33 @@
             <PropertyRef Name="IdRole" />
           </Key>
           <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Document__author__36B12243">
+        <Association Name="FK__Document__author__7D439ABD">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
-              <PropertyRef Name="idEmployee" />
+              <PropertyRef Name="login" />
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="author" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Document__signer__37A5467C">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+        <Association Name="FK__Document__signer__7E37BEF6">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
-              <PropertyRef Name="idEmployee" />
+              <PropertyRef Name="login" />
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="signer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__idRole__239E4DCF">
+        <Association Name="FK__Employee__idRole__00200768">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -73,15 +73,15 @@
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Document__author__36B12243" Association="Self.FK__Document__author__36B12243">
+          <AssociationSet Name="FK__Document__author__7D439ABD" Association="Self.FK__Document__author__7D439ABD">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK__Document__signer__37A5467C" Association="Self.FK__Document__signer__37A5467C">
+          <AssociationSet Name="FK__Document__signer__7E37BEF6" Association="Self.FK__Document__signer__7E37BEF6">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__idRole__239E4DCF" Association="Self.FK__Employee__idRole__239E4DCF">
+          <AssociationSet Name="FK__Employee__idRole__00200768" Association="Self.FK__Employee__idRole__00200768">
             <End Role="Role" EntitySet="Role" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
@@ -95,61 +95,61 @@
           <Key>
             <PropertyRef Name="idDocument" />
           </Key>
-          <Property Name="idDocument" Type="Int32" Nullable="false" />
-          <Property Name="nameDoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="author" Type="Int32" Nullable="false" />
-          <Property Name="mark" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="signer" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Document__author__36B12243" FromRole="Document" ToRole="Employee" />
-          <NavigationProperty Name="Employee1" Relationship="Self.FK__Document__signer__37A5467C" FromRole="Document" ToRole="Employee" />
+          <Property Name="idDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="author" Type="String" MaxLength="900" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mark" Type="Boolean" />
+          <Property Name="signer" Type="String" MaxLength="900" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Document__author__7D439ABD" FromRole="Document" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Document__signer__7E37BEF6" FromRole="Document" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="idEmployee" />
+            <PropertyRef Name="login" />
           </Key>
-          <Property Name="idEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="900" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="idRole" Type="Int32" />
-          <NavigationProperty Name="Document" Relationship="Self.FK__Document__author__36B12243" FromRole="Employee" ToRole="Document" />
-          <NavigationProperty Name="Document1" Relationship="Self.FK__Document__signer__37A5467C" FromRole="Employee" ToRole="Document" />
-          <NavigationProperty Name="Role" Relationship="Self.FK__Employee__idRole__239E4DCF" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__Document__author__7D439ABD" FromRole="Employee" ToRole="Document" />
+          <NavigationProperty Name="Document1" Relationship="Self.FK__Document__signer__7E37BEF6" FromRole="Employee" ToRole="Document" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Employee__idRole__00200768" FromRole="Employee" ToRole="Role" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="IdRole" />
           </Key>
           <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__idRole__239E4DCF" FromRole="Role" ToRole="Employee" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__idRole__00200768" FromRole="Role" ToRole="Employee" />
         </EntityType>
-        <Association Name="FK__Document__author__36B12243">
+        <Association Name="FK__Document__author__7D439ABD">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
-              <PropertyRef Name="idEmployee" />
+              <PropertyRef Name="login" />
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="author" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Document__signer__37A5467C">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+        <Association Name="FK__Document__signer__7E37BEF6">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
-              <PropertyRef Name="idEmployee" />
+              <PropertyRef Name="login" />
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="signer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__idRole__239E4DCF">
+        <Association Name="FK__Employee__idRole__00200768">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,19 +161,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="flowofdocumentEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="flowofdocumentEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Document" EntityType="Self.Document" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
           <EntitySet Name="Role" EntityType="Self.Role" />
-          <AssociationSet Name="FK__Document__author__36B12243" Association="Self.FK__Document__author__36B12243">
+          <AssociationSet Name="FK__Document__author__7D439ABD" Association="Self.FK__Document__author__7D439ABD">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK__Document__signer__37A5467C" Association="Self.FK__Document__signer__37A5467C">
+          <AssociationSet Name="FK__Document__signer__7E37BEF6" Association="Self.FK__Document__signer__7E37BEF6">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__idRole__239E4DCF" Association="Self.FK__Employee__idRole__239E4DCF">
+          <AssociationSet Name="FK__Employee__idRole__00200768" Association="Self.FK__Employee__idRole__00200768">
             <End Role="Role" EntitySet="Role" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
@@ -183,7 +183,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище flowofdocumentModelContainer" CdmEntityContainer="flowofdocumentEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище flowofdocumentModelContainer" CdmEntityContainer="flowofdocumentEntities1">
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="flowofdocumentModel.Document">
               <MappingFragment StoreEntitySet="Document">
@@ -193,13 +193,13 @@
                 <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="mark" ColumnName="mark" />
                 <ScalarProperty Name="signer" ColumnName="signer" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="flowofdocumentModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />

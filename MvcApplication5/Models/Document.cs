@@ -16,10 +16,11 @@ namespace MvcApplication5.Models
     {
         public int idDocument { get; set; }
         public string nameDoc { get; set; }
-        public string date { get; set; }
-        public int author { get; set; }
-        public string mark { get; set; }
-        public Nullable<int> signer { get; set; }
+        public System.DateTime date { get; set; }
+        public string author { get; set; }
+        public Nullable<bool> mark { get; set; }
+        public string signer { get; set; }
+        public string comment { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Employee Employee1 { get; set; }

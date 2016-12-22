@@ -20,7 +20,6 @@ namespace MvcApplication5.Models
             this.Document1 = new HashSet<Document>();
         }
     
-        public int idEmployee { get; set; }
         public string name { get; set; }
         public string login { get; set; }
         public string password { get; set; }

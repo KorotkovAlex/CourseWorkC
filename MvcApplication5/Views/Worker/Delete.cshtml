@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete";
 }
 
-
+<h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
@@ -50,6 +50,13 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Employee1.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comment)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {

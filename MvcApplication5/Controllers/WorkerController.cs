@@ -10,44 +10,20 @@ using System.IO;
 
 namespace MvcApplication5.Controllers
 {
-    [Authorize(Roles = "signer,author")]
     public class WorkerController : Controller
     {
-        private flowofdocumentEntities db = new flowofdocumentEntities();
+        private flowofdocumentEntities1 db = new flowofdocumentEntities1();
 
-        //
-        // GET: /Worker/
-        [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
-        {
-            // Verify that the user selected a file
-            if (file != null && file.ContentLength > 0)
-            {
-                // extract only the fielname
-                var fileName = Path.GetFileName(file.FileName);
-                // store the file inside ~/App_Data/uploads folder
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                file.SaveAs(path);
-                
-            }
-            // redirect back to the index action to show the form once again
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public FileResult Download(string name)
-        {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Саня\Documents\Visual Studio 2013\Projects\MvcApplication5\MvcApplication5\App_Data\uploads\" + name);
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
-        }
-        public ActionResult Index()
+        public ViewResult Index(string search)
         {
             var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
+            if (!String.IsNullOrEmpty(search))
+            {
+                document = document.Where(s => s.nameDoc.Contains(search));
+            }
+            
             return View(document.ToList());
         }
-
-        //
-        // GET: /Worker/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -64,28 +40,9 @@ namespace MvcApplication5.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.author = new SelectList(db.Employee, "idEmployee", "name");
-            ViewBag.signer = new SelectList(db.Employee, "idEmployee", "name");
+            ViewBag.author = new SelectList(db.Employee, "login", "name");
+            ViewBag.signer = new SelectList(db.Employee, "login", "name");
             return View();
-        }
-
-        //
-        // POST: /Worker/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Document document)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Document.Add(document);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.author = new SelectList(db.Employee, "idEmployee", "name", document.author);
-            ViewBag.signer = new SelectList(db.Employee, "idEmployee", "name", document.signer);
-            return View(document);
         }
 
         //
@@ -98,8 +55,8 @@ namespace MvcApplication5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.author = new SelectList(db.Employee, "idEmployee", "name", document.author);
-            ViewBag.signer = new SelectList(db.Employee, "idEmployee", "name", document.signer);
+            ViewBag.author = new SelectList(db.Employee, "login", "name", document.author);
+            ViewBag.signer = new SelectList(db.Employee, "login", "name", document.signer);
             return View(document);
         }
 
@@ -116,8 +73,8 @@ namespace MvcApplication5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.author = new SelectList(db.Employee, "idEmployee", "name", document.author);
-            ViewBag.signer = new SelectList(db.Employee, "idEmployee", "name", document.signer);
+            ViewBag.author = new SelectList(db.Employee, "login", "name", document.author);
+            ViewBag.signer = new SelectList(db.Employee, "login", "name", document.signer);
             return View(document);
         }
 
@@ -152,17 +109,57 @@ namespace MvcApplication5.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        [Authorize(Roles = "author")]
+        public ActionResult MarkingA()
+        {
+            var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
+            return View(document.ToList());
+        }
+
         [Authorize(Roles = "signer")]
         public ActionResult Marking()
         {
             var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
             return View(document.ToList());
         }
-        [Authorize(Roles = "author")]
-        public ActionResult MarkingA()
+
+        [HttpPost]
+        public FileResult Download(string name)
         {
-            var document = db.Document.Include(d => d.Employee).Include(d => d.Employee1);
-            return View(document.ToList());
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Саня\Documents\Visual Studio 2013\Projects\MvcApplication5\MvcApplication5\App_Data\uploads\" + name);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
+        }
+
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                file.SaveAs(path);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Document document, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid && file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                file.SaveAs(path);
+                document.nameDoc = fileName;
+                db.Document.Add(document);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.author = new SelectList(db.Employee, "login", "name", document.author);
+            ViewBag.signer = new SelectList(db.Employee, "login", "name", document.signer);
+            return View(document);
         }
     }
 }

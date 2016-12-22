@@ -4,14 +4,12 @@
     ViewBag.Title = "Login";
 }
 
-<h1>@ViewBag.Title.</h1>
-
 <h2>Используйте для входа локальную учетную запись.</h2>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
+    
     <fieldset>
         <legend>Форма входа</legend>
         <div>

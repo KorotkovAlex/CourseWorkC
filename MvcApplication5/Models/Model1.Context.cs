@@ -13,10 +13,10 @@ namespace MvcApplication5.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class flowofdocumentEntities : DbContext
+    public partial class flowofdocumentEntities1 : DbContext
     {
-        public flowofdocumentEntities()
-            : base("name=flowofdocumentEntities")
+        public flowofdocumentEntities1()
+            : base("name=flowofdocumentEntities1")
         {
         }
     
